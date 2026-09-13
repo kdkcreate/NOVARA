@@ -21,3 +21,21 @@ if (intro && !window.matchMedia('(prefers-reduced-motion: reduce)').matches && !
 } else if (intro) {
   intro.hidden = true;
 }
+const intro = document.querySelector("#site-intro");
+const skipIntro = document.querySelector("#skip-intro");
+
+if (intro) {
+  document.documentElement.classList.add("intro-active");
+
+  const closeIntro = () => {
+    document.documentElement.classList.remove("intro-active");
+    intro.hidden = true;
+  };
+
+  const timer = setTimeout(closeIntro, 3000);
+
+  skipIntro.addEventListener("click", () => {
+    clearTimeout(timer);
+    closeIntro();
+  });
+}
